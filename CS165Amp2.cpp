@@ -268,7 +268,7 @@ int main(int argc, char* argv[]){
     for( int i=0;i<size-1;i++){
         chessboard[i].resize(size);}
     if(xianshou == 1){
-        chessboard[size/2+1][size/2+1]=1;
+        chessboard[size/2][size/2]=1;
         char ch = static_cast<char>(size/2+97);
         cout<<"Move Played: "<<ch<<size/2+1<<endl;}
     while(true){
@@ -300,8 +300,8 @@ int main(int argc, char* argv[]){
        }
         int a1 = score(beststep1, myAI, size-1), b1 = score(beststep1, opponent,size-1);   //attack first
         
-        for(int i = 0; i < size-1; i ++){
-            for(int j = 0; j < size-1; j ++){
+        for(int i = 0; i < size; i ++){
+            for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
@@ -321,8 +321,8 @@ int main(int argc, char* argv[]){
         }
 
         int a2 = score(beststep2, opponent,size-1), b2 = score(beststep2, myAI,size-1);    //defence first
-        for(int i = 0; i < size-1; i ++){
-            for(int j = 0; j < size-1; j ++){
+        for(int i = 0; i < size; i ++){
+            for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
