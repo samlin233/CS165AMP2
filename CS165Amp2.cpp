@@ -306,6 +306,16 @@ int main(int argc, char* argv[]){
                 long int m2 = score(cur, opponent,size);
                 vector<vector<int>> tempboard = chessboard;
                 tempboard[i][j]=1;
+
+                if(m1<a1){
+                    break;          //pruring
+                }
+                else if(m1==a1){
+                    if(m2<b1){
+                        break;
+                    }
+                }
+
                 for(int k=0;k<size;k++){
                     for(int h=0;h<size;h++){
                         if(tempboard[k][h]==0){
