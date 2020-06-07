@@ -292,7 +292,7 @@ int main(int argc, char* argv[]){
 
 
         long int a1 = INT_MIN, b1 = INT_MIN;   //attack first
-        
+        long int c1 = INT_MIN, d1 = INT_MIN;
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] == 0){
@@ -306,69 +306,78 @@ int main(int argc, char* argv[]){
                     for(int h=0;h<size;h++){
                         if(tempboard[k][h]==0){
                             position cur2 = {k,h};
-                            m1 -= score(cur2,opponent,size);
-                            m2 -= score(cur2,myAI,size);
+                            long int n1 = score(cur2,opponent,size);
+                            long int n2 = score(cur2,myAI,size);
+                            if(n1>c1){
+                                c1 = n1;
+                                d1 = n2;
+                            }else if(n1==c1){
+                                if(n2>d1){
+                                    c1=n1;
+                                    d1=n2;
+                                }
+                            }
                         }
                     }
                 }
-                if(m1 > a1){
+                if(m1-c1 > a1){
                     beststep1 = cur;
-                    a1 = m1;
-                    b1 = m2;}
-                else if(m1==a1){
-                    if(b1>m2){
+                    a1 = m1-c1;
+                    b1 = m2-d1;}
+                else if(m1-c1==a1){
+                    if(m2=d1>b1){
                         beststep1 = cur;
-                        a1 = m1;
-                        b1 = m2; 
+                        a1 = m1-c1;
+                        b1 = m2-d1; 
                     }
                 }
                 }
             }
         }
 
-        long int a2 = INT_MIN, b2 = INT_MIN;    //defence first
-        for(int i = 0; i < size; i ++){
-            for(int j = 0; j < size; j ++){
-                if(chessboard[i][j] == 0){
+        // long int a2 = INT_MIN, b2 = INT_MIN;    //defence first
+        // for(int i = 0; i < size; i ++){
+        //     for(int j = 0; j < size; j ++){
+        //         if(chessboard[i][j] == 0){
                 
-                position cur = {i, j};
-                long int m1 = score(cur, opponent,size);
-                long int m2 = score(cur, myAI,size);
-                vector<vector<int>> tempboard = chessboard;
-                tempboard[i][j]=1;
-                for(int k=0;k<size;k++){
-                    for(int h=0;h<size;h++){
-                        if(tempboard[k][h]==0){
-                            position cur2 = {k,h};
-                            m1 -= score(cur2,myAI,size);
-                            m2 -= score(cur2,opponent,size);
-                        }
-                    }
-                }
+        //         position cur = {i, j};
+        //         long int m1 = score(cur, opponent,size);
+        //         long int m2 = score(cur, myAI,size);
+        //         vector<vector<int>> tempboard = chessboard;
+        //         tempboard[i][j]=1;
+        //         for(int k=0;k<size;k++){
+        //             for(int h=0;h<size;h++){
+        //                 if(tempboard[k][h]==0){
+        //                     position cur2 = {k,h};
+        //                     m1 -= score(cur2,myAI,size);
+        //                     m2 -= score(cur2,opponent,size);
+        //                 }
+        //             }
+        //         }
 
-                if(m1> a2){
-                    beststep2 = cur;
-                    a2 = m1;
-                    b2 = m2;}        
-                else if(m1==a2){
-                    if(b2>m2){
-                        beststep2 = cur;
-                        a2 = m1;
-                        b2 = m2; 
-                    }
-                }
-                }
-            }
-        }
+        //         if(m1> a2){
+        //             beststep2 = cur;
+        //             a2 = m1;
+        //             b2 = m2;}        
+        //         else if(m1==a2){
+        //             if(b2>m2){
+        //                 beststep2 = cur;
+        //                 a2 = m1;
+        //                 b2 = m2; 
+        //             }
+        //         }
+        //         }
+        //     }
+        // }
     
-        if(a1+b1 > a2+b2){
+        // if(a1+b1 > a2+b2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
-        }
-        else{
-            chessboard[beststep2.y][beststep2.x]=1;
-            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
-        }
+        // }
+        // else{
+        //     chessboard[beststep2.y][beststep2.x]=1;
+        //     cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
+        // }
     
     }
     return 0;
