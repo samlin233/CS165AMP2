@@ -8,6 +8,7 @@
 #include <sstream>
 #include <ctime>
 #include <cstdlib>
+#include<bits/stdc++.h> 
 using namespace std;
 
 bool xianshou = 0;
@@ -301,8 +302,8 @@ int main(int argc, char* argv[]){
                 long int m2 = score(cur, opponent,size);
                 vector<vector<int>> tempboard = chessboard;
                 tempboard[i][j]=1;
-                for(k=0;k<size;k++){
-                    for(h=0;h<size;h++){
+                for(int k=0;k<size;k++){
+                    for(int h=0;h<size;h++){
                         if(tempboard[k][h]==0){
                             position cur2 = {k,h};
                             m1 -= score(cur2,opponent,size);
