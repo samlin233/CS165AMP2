@@ -32,7 +32,7 @@ position messtoposi(string message){
 
     position p1;
     p1.y =message[0]-'a';
-    p1.x =stoi(s.substr(1))-1;
+    p1.x =stoi(message.substr(1))-1;
     return p1;
 }
 
