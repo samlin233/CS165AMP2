@@ -251,7 +251,7 @@ long int score(position p, int calcopp,int size){
         return 500;//死3S
     if (si2 >= 1)
         return 250;//死2
-    return 10;//无事发生
+    return 1;//无事发生
 }
 
 int main(int argc, char* argv[]){
