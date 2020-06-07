@@ -319,7 +319,7 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        
+
         int a2 = score(beststep2, opponent,size-1), b2 = score(beststep2, myAI,size-1);    //defence first
         for(int i = 0; i < size-1; i ++){
             for(int j = 0; j < size-1; j ++){
@@ -342,9 +342,11 @@ int main(int argc, char* argv[]){
         }
         if(a1 >= a2){
             cout<<"Move Played: "<<char(beststep1.x+'a')<<beststep1.y+1<<endl;
+            chessboard[beststep1.y][beststep1.x]=1;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.x+'a')<<beststep2.y+1<<endl;;
+            cout<<"Move Played: "<<char(beststep2.x+'a')<<beststep2.y+1<<endl;
+            chessboard[beststep2.y][beststep2.x]=1;
         }
     
     }
