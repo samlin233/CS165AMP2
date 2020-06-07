@@ -56,36 +56,42 @@ position newposition (position p, direction d, int lenth){
 long int score(position p, int calcopp,int size){
     int win5 = 0, huo4 = 0, si4 = 0, doublesi4 = 0, huo3 = 0, 
     doublehuo3 = 0, si3 = 0, huo2 = 0, doublehuo2 = 0, si2 = 0, mode = 0;
-    int oppchess = 2;
+    int oppchess;
+    if(calcopp == 1){
+        oppchess = 2;
+    }
+    else{
+        oppchess = 1;
+    }
     for(int i = 1; i <= 4; i ++){
         direction directions [4]= {dlr,dud,ddl,ddr};
         direction d = directions[i+1];
         int l = 1;               //连子长度
-        position le, ri, p1;
+        position lef, rig, p1;
         int left[5], right[5];
         p1 = newposition(p, d, -1);                                 //向左向下检查
-        le = p;
+        lef = p;
         while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
-            le = p1;
+            lef = p1;
             p1 = newposition(p1, d, -1);
             l ++;
         }
         p1 = newposition(p, d, 1);                                  //向右向下检查
-        ri = p;
+        rig = p;
         while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
             ri = p1;
             p1 = newposition(p1, d, 1);
             l ++;
         }
         for(int j = 1; j <= 4; j ++){
-            p1 = newposition(le, d, -j);
+            p1 = newposition(lef, d, -j);
             if(isOnBoard(p1,size)){
                 left[j] = chessboard[p1.y][p1.x];
             }
             else{
                 left[j] = oppchess;
             }
-            p1 = newposition(ri, d, j);
+            p1 = newposition(rig, d, j);
             if(isOnBoard(p1,size)){
                 right[j] = chessboard[p1.y][p1.x];
             }
