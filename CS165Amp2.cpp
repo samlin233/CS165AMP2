@@ -261,33 +261,23 @@ int score(position p, int calcopp){
 int main(int argc, char* argv[]){
     
     if(argc>1 && argv[1][1]=='n'){
-        size = stoi(argv[2]);
-    }
+        size = stoi(argv[2]);}
     else if(argc>2 && argv[2][1]=='n'){
-        size = stoi(argv[3]);
-    }
+        size = stoi(argv[3]);}
     if(argc>1 && argv[1][1]=='l'){
-        xianshou = 1;
-    }
+        xianshou = 1;}
     else if(argc>1 && argv[3][1] == 'l'){
-        xianshou=1;
-    }
-
+        xianshou=1;}
     chessboard.resize(size);
     for( int i=0;i<size-1;i++){
-        chessboard[i].resize(size);
-    }
-
+        chessboard[i].resize(size);}
     if(xianshou == 1){
         chessboard[size/2][size/2]=1;
         string ch = "0"+(size/2+97);
-        cout<<"Move Played: "<<ch<<size/2;
-    }
-
+        cout<<"Move Played: "<<ch<<size/2;}
     while(true){
         string temp ="";
         cin>>temp;
-        cout<<"Move Played: "<<temp<<endl;
         position p1 = messtoposi(temp);
         while (chessboard[p1.y][p1.x]!=0)
         {
