@@ -226,9 +226,9 @@ long int score(position p, int calcopp,int size){
        }
     }
     if (win5 >= 1)
-        return 10000000;//贏5
+        return 100000000;//贏5
     if (huo4 >= 1 || si4 >= 2 || (si4 >= 1 && huo3 >= 1))
-        return 5000000;//活4 双死4 死4活3
+        return 50000000;//活4 双死4 死4活3
     if (huo3 >= 2)
         return 5000000;//双活3
     if (si3 >= 1 && huo3 >= 1)
@@ -238,9 +238,9 @@ long int score(position p, int calcopp,int size){
     if (doublesi4 >= 1)
         return 10000;//死4
     if (huo3 >= 1)
-        return 10000;//活3
+        return 5000;//活3
     if (doublehuo3 >= 1)
-        return 2500;//双活3
+        return 6000;//双活3
     if (huo2 >= 2)
         return 1250;//高等双活2
     if (huo2 >= 1)
