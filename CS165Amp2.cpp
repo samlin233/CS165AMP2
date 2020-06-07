@@ -279,6 +279,7 @@ int main(int argc, char* argv[]){
         cout<<endl<<"input your move: ";
         string temp ="";
         cin>>temp;
+        cout<<"wdnmd"<<endl;
         position p1 = messtoposi(temp);
         cout<<"The y"<<p1.y<<"  The X"<<p1.x<<endl;
         while (chessboard[p1.y][p1.x]!=0)
