@@ -261,10 +261,14 @@ int main(int argc, char* argv[]){
         size = stoi(argv[2]);}
     else if(argc>2 && argv[2][1]=='n'){
         size = stoi(argv[3]);}
+    else{
+        size = 11;
+    }
     if(argc>1 && argv[1][1]=='l'){
         xianshou = 1;}
     else if(argc>1 && argv[3][1] == 'l'){
         xianshou=1;}
+    else{xianshou =0;}
     chessboard.resize(size);
     for( int i=0;i<size;i++){
         chessboard[i].resize(size);}
