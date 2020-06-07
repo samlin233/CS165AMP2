@@ -302,9 +302,9 @@ int main(int argc, char* argv[]){
         
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
-                if(chessboard[i][j] != 0){
+                if(chessboard[j][i] != 0){
                     continue;}
-                position cur = {i, j};
+                position cur = {j, i};
                 int m1 = score(cur, myAI,size);
                 int m2 = score(cur, opponent,size);
                 if(m1 > a1){
@@ -323,9 +323,9 @@ int main(int argc, char* argv[]){
         int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
-                if(chessboard[i][j] != 0){
+                if(chessboard[j][i] != 0){
                     continue;}
-                position cur = {i, j};
+                position cur = {j, i};
                 int m1 = score(cur, opponent,size);
                 int m2 = score(cur, myAI,size);
                 if(m1 > a2){
@@ -341,11 +341,11 @@ int main(int argc, char* argv[]){
             }
         }
         if(a1 >= a2){
-            cout<<"Move Played: "<<char(beststep1.x+'a')<<beststep1.y+1<<endl;
+            cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
             chessboard[beststep1.y][beststep1.x]=1;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.x+'a')<<beststep2.y+1<<endl;
+            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
             chessboard[beststep2.y][beststep2.x]=1;
         }
     
