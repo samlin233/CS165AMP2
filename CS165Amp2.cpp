@@ -39,7 +39,7 @@ position messtoposi(string message){
 }
 
 bool isOnBoard(position p, int size){
-    if(p.y >= 0 && p.y < size && p.x >= 0 && p.x < size){
+    if(p.y >= 0 && p.y <= size && p.x >= 0 && p.x <= size){
         return true;
     }
     else{
@@ -341,11 +341,11 @@ int main(int argc, char* argv[]){
             }
         }
         if(a1 >= a2){
-            cout<<"Move Played: "<<char(beststep1.y+1+'a')<<beststep1.x+1<<endl;
+            cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
             chessboard[beststep1.y][beststep1.x]=1;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.y+1+'a')<<beststep2.x+1<<endl;
+            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
             chessboard[beststep2.y][beststep2.x]=1;
         }
     
