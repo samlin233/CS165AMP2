@@ -227,19 +227,10 @@ long int score(position p, int calcopp,int size){
        }
     }
     if (win5 >= 1)
-        if (calcopp==1)
         return 1500000;//贏5
-        else
-        return 150000;
     if (huo4 >= 1 || si4 >= 2 || (si4 >= 1 && huo3 >= 1))
-        if (calcopp==1)
-        return 150000;
-        else
-        return 15000;//活4 双死4 死4活3
+        return 140000;//活4 双死4 死4活3
     if (huo3 >= 2)
-        if (calcopp==1)
-        return 130000;
-        else
         return 13000;//双活3
     if (si3 >= 1 && huo3 >= 1)
         return 1200;//死3活3
@@ -316,7 +307,7 @@ int main(int argc, char* argv[]){
                         if(tempboard[k][h]==0){
                             position cur2 = {k,h};
                             m1 -= score(cur2,opponent,size);
-                            m2 -= score(cur2,opponent,size);
+                            m2 -= score(cur2,myAI,size);
                         }
                     }
                 }
