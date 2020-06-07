@@ -265,7 +265,7 @@ int main(int argc, char* argv[]){
     else if(argc>1 && argv[3][1] == 'l'){
         xianshou=1;}
     chessboard.resize(size);
-    for( int i=0;i<size-1;i++){
+    for( int i=0;i<size;i++){
         chessboard[i].resize(size);}
     if(xianshou == 1){
         chessboard[size/2][size/2]=1;
@@ -290,23 +290,23 @@ int main(int argc, char* argv[]){
  
         position beststep1, beststep2;  //1prio on attack 2prio on defence
 
-       for(int i=0; i<size-1;i++){
-           for(int j=0; j<size-1;j++){
+       for(int i=0; i<size;i++){
+           for(int j=0; j<size;j++){
                if(chessboard[i][j]==0){
                    beststep1.y=i;
                    beststep1.x=j;                   
                }
            }
        }
-        int a1 = score(beststep1, myAI, size-1), b1 = score(beststep1, opponent,size-1);   //attack first
+        int a1 = score(beststep1, myAI, size), b1 = score(beststep1, opponent,size);   //attack first
         
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, myAI,size-1);
-                int m2 = score(cur, opponent,size-1);
+                int m1 = score(cur, myAI,size);
+                int m2 = score(cur, opponent,size);
                 if(m1 > a1){
                     beststep1 = cur;
                     a1 = m1;
@@ -320,14 +320,14 @@ int main(int argc, char* argv[]){
             }
         }
 
-        int a2 = score(beststep2, opponent,size-1), b2 = score(beststep2, myAI,size-1);    //defence first
+        int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, opponent,size-1);
-                int m2 = score(cur, myAI,size-1);
+                int m1 = score(cur, opponent,size);
+                int m2 = score(cur, myAI,size);
                 if(m1 > a2){
                     beststep2 = cur;
                     a2 = m1;
