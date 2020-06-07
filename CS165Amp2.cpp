@@ -292,8 +292,8 @@ int main(int argc, char* argv[]){
        for(int i=0; i<size;i++){
            for(int j=0; j<size;j++){
                if(chessboard[i][j]==0){
-                   beststep1.y=i;
-                   beststep1.x=j;  
+                   beststep1.y=beststep2.y=i;
+                   beststep1.x=beststep2.x=j;  
                    break;                 
                }
            }
@@ -342,7 +342,7 @@ int main(int argc, char* argv[]){
             }
             }
         }
-        if(a1 >= a2){
+        if(a1 > a2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
         }
