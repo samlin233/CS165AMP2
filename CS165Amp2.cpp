@@ -284,12 +284,12 @@ int main(int argc, char* argv[]){
         cout<<"Move Played: "<<ch<<size/2;
     }
 
-
-    string temp ="";
-    cin>>temp;
+    while(true){
+        string temp ="";
+        cin>>temp;
         cout<<"Move Played: "<<temp<<endl;
         position p1 = messtoposi(temp);
-        while (chessboard[p1.x][p1.y]!=0)
+        while (chessboard[p1.y][p1.x]!=0)
         {
             cout<<"Invalid move"<<endl;
             cin>>temp;
@@ -298,7 +298,7 @@ int main(int argc, char* argv[]){
         
         cout<<"Move Played: "<<temp<<endl;
 
-        chessboard[p1.x][p1.y] = 2;
+        chessboard[p1.y][p1.x] = 2;
 
         position beststep1, beststep2;  //1prio on attack 2prio on defence
         for(int i=0;i<size;i++){
@@ -356,7 +356,7 @@ int main(int argc, char* argv[]){
             cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y;
         }
     
-
+    }
     return 0;
 }
 
