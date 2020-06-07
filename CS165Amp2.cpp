@@ -79,7 +79,7 @@ long int score(position p, int calcopp,int size){
         p1 = newposition(p, d, 1);                                  //向右向下检查
         rig = p;
         while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
-            ri = p1;
+            rig = p1;
             p1 = newposition(p1, d, 1);
             l ++;
         }
