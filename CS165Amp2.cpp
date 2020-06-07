@@ -6,6 +6,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 bool xianshou = 0;
@@ -268,14 +270,14 @@ int main(int argc, char* argv[]){
     if(xianshou == 1){
         chessboard[size/2][size/2]=1;
         char ch = static_cast<char>(size/2+97);
-        cout<<"Move Played: "<<ch<<size/2<<endl;}
+        cout<<"Move Played: "<<ch<<size/2+1<<endl;}
     while(true){
         cout<<endl<<"input your move: ";
         string temp ="";
         cin>>temp;
         position p1 = messtoposi(temp);
         cout<<"The y:"<<p1.y<<"  The X:"<<p1.x<<endl;
-        while (chessboard[p1.y][p1.x]!=0)
+        while (chessboard[p1.y][p1.x]!=0||p1.x>size||p1.y>size)
         {
             cout<<"Invalid move"<<endl;
             cin>>temp;
@@ -287,32 +289,26 @@ int main(int argc, char* argv[]){
         chessboard[p1.y][p1.x] = 2;
  
         position beststep1, beststep2;  //1prio on attack 2prio on defence
-/*        for(int i=0;i<size;i++){
-            for(int j=0;j<size;j++){
-                if(chessboard[i][j]==0){
-                    beststep1.x = beststep2.x = i;
-                    beststep1.y = beststep2.y = j;
-                }
-            }
-        }    
-*/
-       
-       while(chessboard[beststep1.y][beststep1.x] != 0){
-            srand(time(NULL));
-            beststep1.y = beststep2.y = rand()%size;
-            beststep1.x = beststep2.x = rand()%size;
+
+       for(int i=0; i<size-1;i++){
+           for(int j=0; j<size-1;j++){
+               if(chessboard[i][j]==0){
+                   beststep1.y=i;
+                   beststep1.x=j;                   
+               }
+               cout<<chessboard[i][j]<<" ";
+           }
+           cout<<endl;
        }
-       cout<<"wtf2.0"<<endl;
-        int a1 = score(beststep1, myAI, size), b1 = score(beststep1, opponent,size);   //attack first
+        int a1 = score(beststep1, myAI, size-1), b1 = score(beststep1, opponent,size-1);   //attack first
         
-        cout<<"bc0.00"<<endl;
-        for(int i = 0; i < size; i ++){
-            for(int j = 0; j < size; j ++){
+        for(int i = 0; i < size-1; i ++){
+            for(int j = 0; j < size-1; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, myAI,size);
-                int m2 = score(cur, opponent,size);
+                int m1 = score(cur, myAI,size-1);
+                int m2 = score(cur, opponent,size-1);
                 if(m1 > a1){
                     beststep1 = cur;
                     a1 = m1;
@@ -326,14 +322,14 @@ int main(int argc, char* argv[]){
             }
         }
         cout<<"bc 0.10"<<endl;
-        int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
-        for(int i = 0; i < size; i ++){
-            for(int j = 0; j < size; j ++){
+        int a2 = score(beststep2, opponent,size-1), b2 = score(beststep2, myAI,size-1);    //defence first
+        for(int i = 0; i < size-1; i ++){
+            for(int j = 0; j < size-1; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, opponent,size);
-                int m2 = score(cur, myAI,size);
+                int m1 = score(cur, opponent,size-1);
+                int m2 = score(cur, myAI,size-1);
                 if(m1 > a2){
                     beststep2 = cur;
                     a2 = m1;
@@ -347,10 +343,10 @@ int main(int argc, char* argv[]){
             }
         }
         if(a1 >= a2){
-            cout<<"Move Played: "<<char(beststep1.x+97)<<beststep1.y<<endl;
+            cout<<"Move Played: "<<char(beststep1.x+97)<<beststep1.y+1<<endl;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y<<endl;;
+            cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y+1<<endl;;
         }
     
     }
