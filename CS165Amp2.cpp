@@ -268,7 +268,7 @@ int main(int argc, char* argv[]){
     for( int i=0;i<size-1;i++){
         chessboard[i].resize(size);}
     if(xianshou == 1){
-        chessboard[size/2][size/2]=1;
+        chessboard[size/2+1][size/2+1]=1;
         char ch = static_cast<char>(size/2+97);
         cout<<"Move Played: "<<ch<<size/2+1<<endl;}
     while(true){
