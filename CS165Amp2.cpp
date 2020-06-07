@@ -362,11 +362,11 @@ int main(int argc, char* argv[]){
     
         if(a1+b1 > a2+b2){
             chessboard[beststep1.y][beststep1.x]=1;
-            cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
+            cout<<"Move Played: "<<char(beststep1.y+1+'a')<<beststep1.x+1<<endl;
         }
         else{
             chessboard[beststep2.y][beststep2.x]=1;
-            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
+            cout<<"Move Played: "<<char(beststep2.y+1+'a')<<beststep2.x+1<<endl;
         }
     
     }
