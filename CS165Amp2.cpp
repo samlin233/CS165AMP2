@@ -268,9 +268,9 @@ int main(int argc, char* argv[]){
     for( int i=0;i<size;i++){
         chessboard[i].resize(size);}
     if(xianshou == 1){
-        chessboard[size/2][size/2]=1;
         char ch = static_cast<char>(size/2+97);
         cout<<"Move Played: "<<ch<<size/2+1<<endl;
+        chessboard[size/2][size/2]=1;
         }
     while(true){
         string temp ="";
@@ -302,9 +302,9 @@ int main(int argc, char* argv[]){
         
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
-                if(chessboard[j][i] != 0){
-                    continue;}
-                position cur = {j, i};
+                if(chessboard[i][j] == 0){
+                
+                position cur = {i, j};
                 long int m1 = score(cur, myAI,size);
                 long int m2 = score(cur, opponent,size);
                 if(m1 > a1){
@@ -317,15 +317,16 @@ int main(int argc, char* argv[]){
                         b1 = m2;
                     }
                 }
+                }
             }
         }
 
         long int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
-                if(chessboard[j][i] != 0){
-                    continue;}
-                position cur = {j, i};
+                if(chessboard[i][j] == 0){
+                
+                position cur = {i, j};
                 long int m1 = score(cur, opponent,size);
                 long int m2 = score(cur, myAI,size);
                 if(m1 > a2){
@@ -339,14 +340,15 @@ int main(int argc, char* argv[]){
                     }
                 }
             }
+            }
         }
         if(a1 >= a2){
-            cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
             chessboard[beststep1.y][beststep1.x]=1;
+            cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
             chessboard[beststep2.y][beststep2.x]=1;
+            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
         }
     
     }
