@@ -308,11 +308,11 @@ int main(int argc, char* argv[]){
                 tempboard[i][j]=1;
 
                 if(m1<a1){
-                    break;          //pruring
+                    continue;          //pruring
                 }
                 else if(m1==a1){
                     if(m2<b1){
-                        break;
+                        continue;
                     }
                 }
 
@@ -363,11 +363,11 @@ int main(int argc, char* argv[]){
                 
 
                 if(m1<a2){
-                    break;          //pruring
+                    continue;          //pruring
                 }
                 else if(m1==a2){
                     if(m2<b2){
-                        break;
+                        continue;
                     }
                 }
 
