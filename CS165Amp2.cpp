@@ -266,7 +266,7 @@ int main(int argc, char* argv[]){
     }
     if(argc>1 && argv[1][1]=='l'){
         xianshou = 1;}
-    else if(argc>1 && argv[3][1] == 'l'){
+    else if(argc>3 && argv[3][1] == 'l'){
         xianshou=1;}
     else{xianshou =0;}
     chessboard.resize(size);
