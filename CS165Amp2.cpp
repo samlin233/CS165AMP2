@@ -251,7 +251,7 @@ long int score(position p, int calcopp,int size){
         return 500;//死3S
     if (si2 >= 1)
         return 250;//死2
-    return 1;//无事发生
+    return 10;//无事发生
 }
 
 int main(int argc, char* argv[]){
@@ -307,10 +307,17 @@ int main(int argc, char* argv[]){
                 position cur = {i, j};
                 long int m1 = score(cur, myAI,size);
                 long int m2 = score(cur, opponent,size);
-                if(m1+m2 > a1+b1){
+                if(m1 > a1){
                     beststep1 = cur;
                     a1 = m1;
                     b1 = m2;}
+                else if(m1==a1){
+                    if(b1>m2){
+                        beststep1 = cur;
+                        a1 = m1;
+                        b1 = m2; 
+                    }
+                }
                 }
             }
         }
@@ -323,15 +330,22 @@ int main(int argc, char* argv[]){
                 position cur = {i, j};
                 long int m1 = score(cur, opponent,size);
                 long int m2 = score(cur, myAI,size);
-                if(m1+m2 > a2+b2){
+                if(m1> a2){
                     beststep2 = cur;
                     a2 = m1;
-                    b2 = m2;}
+                    b2 = m2;}        
+                else if(m1==a2){
+                    if(b2>m2){
+                        beststep2 = cur;
+                        a2 = m1;
+                        b2 = m2; 
+                    }
+                }
                 }
             }
         }
     
-        if(a1 > a2){
+        if(a1+b1 > a2+b2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
         }
