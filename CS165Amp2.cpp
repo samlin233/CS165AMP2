@@ -276,6 +276,7 @@ int main(int argc, char* argv[]){
         char ch = static_cast<char>(size/2+97);
         cout<<"Move Played: "<<ch<<size/2;}
     while(true){
+        cout<<"input your move: "<<endl;
         string temp ="";
         cin>>temp;
         position p1 = messtoposi(temp);
@@ -340,10 +341,10 @@ int main(int argc, char* argv[]){
             }
         }
         if(a1 >= a2){
-            cout<<"Move Played: "<<char(beststep1.x+97)<<beststep1.y;
+            cout<<"Move Played: "<<char(beststep1.x+97)<<beststep1.y<<endl;
         }
         else{
-            cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y;
+            cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y<<endl;;
         }
     
     }
