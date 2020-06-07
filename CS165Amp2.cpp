@@ -39,6 +39,7 @@ position messtoposi(string message){
     position p1;
     p1.y =temp_int;
     p1.x =int(message[13]-97);
+    return p1;
 }
 
 bool isOnBoard(position p){
@@ -288,7 +289,17 @@ int main(int argc, char* argv[]){
 
     while(cin>>temp){
         cout<<"Move Played: "<<temp<<endl;
-        chessboard[int(temp[1])-97][temp[2]-1] = 2;
+        position p1 = messtoposi(temp);
+        while (chessboard[p1.x][p1.y]!=0)
+        {
+            cout<<"Invalid move"<<endl;
+            cin>>temp;
+            p1 = messtoposi(temp);
+        }
+        
+        cout<<"Move Played: "<<temp<<endl;
+
+        chessboard[p1.x][p1.y] = 2;
 
         position beststep1, beststep2;  //1prio on attack 2prio on defence
         for(int i=0;i<size;i++){
