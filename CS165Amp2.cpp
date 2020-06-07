@@ -39,7 +39,7 @@ position messtoposi(string message){
 }
 
 bool isOnBoard(position p, int size){
-    if(p.y >= 0 && p.y <= size && p.x >= 0 && p.x <= size){
+    if(p.y >= 0 && p.y < size && p.x >= 0 && p.x < size){
         return true;
     }
     else{
@@ -234,9 +234,9 @@ int score(position p, int calcopp,int size){
     if (si3 >= 1 && huo3 >= 1)
         return 125;//死3活3
     if (si4 >= 1)
-        return 60;//死4
+        return 80;//死4
     if (doublesi4 >= 1)
-        return 55;//死4
+        return 60;//死4
     if (huo3 >= 1)
         return 50;//活3
     if (doublehuo3 >= 1)
