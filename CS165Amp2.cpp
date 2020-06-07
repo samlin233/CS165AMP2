@@ -36,8 +36,8 @@ position messtoposi(string message){
     return p1;
 }
 
-bool isOnBoard(position p){
-    if(p.y >= 0 && p.y < 15 && p.x >= 0 && p.x < 15){
+bool isOnBoard(position p, int size){
+    if(p.y >= 0 && p.y < size && p.x >= 0 && p.x < size){
         return true;
     }
     else{
@@ -51,7 +51,7 @@ position newposition (position p, direction d, int lenth){
 }
 
 
-int score(position p, int calcopp){
+int score(position p, int calcopp,int size){
     int win5 = 0, huo4 = 0, si4 = 0, doublesi4 = 0, huo3 = 0, 
     doublehuo3 = 0, si3 = 0, huo2 = 0, doublehuo2 = 0, si2 = 0, mode = 0;
     int oppchess;
@@ -69,28 +69,28 @@ int score(position p, int calcopp){
         int left[5], right[5];
         p1 = newposition(p, d, -1);                                 //向左向下检查
         le = p;
-        while(isOnBoard(p1) && chessboard[p1.y][p1.x] == calcopp){
+        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
             le = p1;
             p1 = newposition(p1, d, -1);
             l ++;
         }
         p1 = newposition(p, d, 1);                                  //向右向下检查
         ri = p;
-        while(isOnBoard(p1) && chessboard[p1.y][p1.x] == calcopp){
+        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
             ri = p1;
             p1 = newposition(p1, d, 1);
             l ++;
         }
         for(int j = 1; j <= 4; j ++){
             p1 = newposition(le, d, -j);
-            if(isOnBoard(p1)){
+            if(isOnBoard(p1,size)){
                 left[j] = chessboard[p1.y][p1.x];
             }
             else{
                 left[j] = oppchess;
             }
             p1 = newposition(ri, d, j);
-            if(isOnBoard(p1)){
+            if(isOnBoard(p1,size)){
                 right[j] = chessboard[p1.y][p1.x];
             }
             else{
@@ -285,9 +285,9 @@ int main(int argc, char* argv[]){
         cout<<"Move Played: "<<temp<<endl;
 
         chessboard[p1.y][p1.x] = 2;
-
+ 
         position beststep1, beststep2;  //1prio on attack 2prio on defence
-        for(int i=0;i<size;i++){
+/*        for(int i=0;i<size;i++){
             for(int j=0;j<size;j++){
                 if(chessboard[i][j]==0){
                     beststep1.x = beststep2.x = i;
@@ -295,16 +295,24 @@ int main(int argc, char* argv[]){
                 }
             }
         }    
-
-        cout<<"bug check1"<<endl;
-        int a1 = score(beststep1, myAI), b1 = score(beststep1, opponent);   //attack first
+*/
+       
+       while(chessboard[beststep1.y][beststep1.x] != 0){
+            srand(time(NULL));
+            beststep1.y = beststep2.y = rand()%size;
+            beststep1.x = beststep2.x = rand()%size;
+       }
+       cout<<"wtf2.0"<<endl;
+        int a1 = score(beststep1, myAI, size), b1 = score(beststep1, opponent,size);   //attack first
+        
+        cout<<"bc0.00"<<endl;
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, myAI);
-                int m2 = score(cur, opponent);
+                int m1 = score(cur, myAI,size);
+                int m2 = score(cur, opponent,size);
                 if(m1 > a1){
                     beststep1 = cur;
                     a1 = m1;
@@ -317,14 +325,15 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        int a2 = score(beststep2, opponent), b2 = score(beststep2, myAI);    //defence first
+        cout<<"bc 0.10"<<endl;
+        int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] != 0){
                     continue;}
                 position cur = {i, j};
-                int m1 = score(cur, opponent);
-                int m2 = score(cur, myAI);
+                int m1 = score(cur, opponent,size);
+                int m2 = score(cur, myAI,size);
                 if(m1 > a2){
                     beststep2 = cur;
                     a2 = m1;
