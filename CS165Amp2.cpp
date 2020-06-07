@@ -37,7 +37,7 @@ position messtoposi(string message){
         str_strm >> temp_str; //take words into temp_str one by one
         stringstream(temp_str) >> temp_int;}
     position p1;
-    p1.y =((int)message[13])-97);
+    p1.y =((int)message[13])-97;
     p1.x =temp_int;
     return p1;
 }
