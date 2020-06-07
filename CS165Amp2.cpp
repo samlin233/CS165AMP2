@@ -289,16 +289,8 @@ int main(int argc, char* argv[]){
  
         position beststep1, beststep2;  //1prio on attack 2prio on defence
 
-       for(int i=0; i<size;i++){
-           for(int j=0; j<size;j++){
-               if(chessboard[i][j]==0){
-                   beststep1.y=beststep2.y=i;
-                   beststep1.x=beststep2.x=j;  
-                   break;                 
-               }
-           }
-       }
-        long int a1 = score(beststep1, myAI, size), b1 = score(beststep1, opponent,size);   //attack first
+
+        long int a1 = INT_MIN, b1 = INT_MIN;   //attack first
         
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
@@ -307,6 +299,17 @@ int main(int argc, char* argv[]){
                 position cur = {i, j};
                 long int m1 = score(cur, myAI,size);
                 long int m2 = score(cur, opponent,size);
+                vector<vector<int>> tempboard = chessboard;
+                tempboard[i][j]=1;
+                for(k=0;k<size;k++){
+                    for(h=0;h<size;h++){
+                        if(tempboard[k][h]==0){
+                            position cur2 = {k,h};
+                            m1 -= score(cur2,opponent,size);
+                            m2 -= score(cur2,opponent,size);
+                        }
+                    }
+                }
                 if(m1 > a1){
                     beststep1 = cur;
                     a1 = m1;
@@ -322,37 +325,37 @@ int main(int argc, char* argv[]){
             }
         }
 
-        long int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
-        for(int i = 0; i < size; i ++){
-            for(int j = 0; j < size; j ++){
-                if(chessboard[i][j] == 0){
+        // long int a2 = score(beststep2, opponent,size), b2 = score(beststep2, myAI,size);    //defence first
+        // for(int i = 0; i < size; i ++){
+        //     for(int j = 0; j < size; j ++){
+        //         if(chessboard[i][j] == 0){
                 
-                position cur = {i, j};
-                long int m1 = score(cur, opponent,size);
-                long int m2 = score(cur, myAI,size);
-                if(m1> a2){
-                    beststep2 = cur;
-                    a2 = m1;
-                    b2 = m2;}        
-                else if(m1==a2){
-                    if(b2>m2){
-                        beststep2 = cur;
-                        a2 = m1;
-                        b2 = m2; 
-                    }
-                }
-                }
-            }
-        }
+        //         position cur = {i, j};
+        //         long int m1 = score(cur, opponent,size);
+        //         long int m2 = score(cur, myAI,size);
+        //         if(m1> a2){
+        //             beststep2 = cur;
+        //             a2 = m1;
+        //             b2 = m2;}        
+        //         else if(m1==a2){
+        //             if(b2>m2){
+        //                 beststep2 = cur;
+        //                 a2 = m1;
+        //                 b2 = m2; 
+        //             }
+        //         }
+        //         }
+        //     }
+        // }
     
-        if(a1+b1 > a2+b2){
+        // if(a1+b1 > a2+b2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
-        }
-        else{
-            chessboard[beststep2.y][beststep2.x]=1;
-            cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
-        }
+        // }
+        // else{
+        //     chessboard[beststep2.y][beststep2.x]=1;
+        //     cout<<"Move Played: "<<char(beststep2.y+'a')<<beststep2.x+1<<endl;
+        // }
     
     }
     return 0;
