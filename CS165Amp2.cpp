@@ -274,12 +274,13 @@ int main(int argc, char* argv[]){
     if(xianshou == 1){
         chessboard[size/2][size/2]=1;
         char ch = static_cast<char>(size/2+97);
-        cout<<"Move Played: "<<ch<<size/2;}
+        cout<<"Move Played: "<<ch<<size/2<<endl;}
     while(true){
-        cout<<"input your move: "<<endl;
+        cout<<endl<<"input your move: ";
         string temp ="";
         cin>>temp;
         position p1 = messtoposi(temp);
+        cout<<"The y"<<p1.y<<"  The X"<<p1.x<<endl;
         while (chessboard[p1.y][p1.x]!=0)
         {
             cout<<"Invalid move"<<endl;
