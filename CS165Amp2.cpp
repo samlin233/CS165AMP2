@@ -259,8 +259,6 @@ int score(position p, int calcopp){
 }
 
 int main(int argc, char* argv[]){
-    string temp ="";
-    cin>>temp;
     
     if(argc>1 && argv[1][1]=='n'){
         size = stoi(argv[2]);
@@ -287,7 +285,8 @@ int main(int argc, char* argv[]){
     }
 
 
-    while(cin>>temp){
+    string temp ="";
+    cin>>temp;
         cout<<"Move Played: "<<temp<<endl;
         position p1 = messtoposi(temp);
         while (chessboard[p1.x][p1.y]!=0)
