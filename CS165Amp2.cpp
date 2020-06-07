@@ -66,7 +66,7 @@ long int score(position p, int calcopp,int size){
     }
     for(int i = 1; i <= 4; i ++){
         direction directions [4]= {dlr,dud,ddl,ddr};
-        direction d = directions[i+1];
+        direction d = directions[i-1];
         int l = 1;               //连子长度
         position lef, rig, p1;
         int left[5], right[5];
@@ -291,7 +291,8 @@ int main(int argc, char* argv[]){
         position beststep1, beststep2;  //1prio on attack 2prio on defence
 
 
-        long int a1 = INT_MIN, b1 = INT_MIN;   //attack first
+        long int a1 = INT_MIN, b1 = INT_MIN;
+        long int c1 = INT_MIN, d1 = INT_MIN;   //attack first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] == 0){
@@ -305,31 +306,41 @@ int main(int argc, char* argv[]){
                     for(int h=0;h<size;h++){
                         if(tempboard[k][h]==0){
                             position cur2 = {k,h};
-                            m1 -= score(cur2,myAI,size);
-                            m2 -= score(cur2,opponent,size);
+                            long int n1 = score(cur2,opponent,size);
+                            long int n2 = score(cur2,myAI,size);
+                            if(n1>c1){
+                                c1=n1;
+                                d1=n2;
+                            }else if(n1==c1){
+                                if(n2>d1){
+                                    c1 = n1;
+                                    d1 = n2;
+                                }
+                            }
                         }
                     }
                 }
-                if(m1 > a1){
+                if(m1-c1 > a1){
                     beststep1 = cur;
-                    a1 = m1;
-                    b1 = m2;}
+                    a1 = m1-c1;
+                    b1 = m2-d1;}
                 else if(m1==a1){
-                    if(m2>b1){
+                    if(m2-d1>b1){
                         beststep1 = cur;
-                        a1 = m1;
-                        b1 = m2; 
+                        a1 = m1-c1;
+                        b1 = m2-d1; 
                     }
                 }
                 }
             }
         }
 
-        long int a2 = INT_MIN, b2 = INT_MIN;    //defence first
+        long int a2 = INT_MIN, b2 = INT_MIN;
+        long int c2 = INT_MIN, d2 = INT_MIN;    //defence first
         for(int i = 0; i < size; i ++){
             for(int j = 0; j < size; j ++){
                 if(chessboard[i][j] == 0){
-                
+
                 position cur = {i, j};
                 long int m1 = score(cur, opponent,size);
                 long int m2 = score(cur, myAI,size);
@@ -339,21 +350,30 @@ int main(int argc, char* argv[]){
                     for(int h=0;h<size;h++){
                         if(tempboard[k][h]==0){
                             position cur2 = {k,h};
-                            m1 -= score(cur2,opponent,size);
-                            m2 -= score(cur2,myAI,size);
+                            long int n1 = score(cur2,opponent,size);
+                            long int n2 = score(cur2,myAI,size);
+                            if(n2>c2){
+                                c2=n1;
+                                d2=n2;
+                            }else if(n1==c2){
+                                if(n2>d2){
+                                    c2 = n1;
+                                    d2 = n2;
+                                }
+                            }
                         }
                     }
                 }
 
-                if(m1> a2){
+                if(m1-c2> a2){
                     beststep2 = cur;
-                    a2 = m1;
-                    b2 = m2;}        
-                else if(m1==a2){
-                    if(b2>m2){
+                    a2 = m1-c2;
+                    b2 = m2-d2;}        
+                else if(m1-c2==a2){
+                    if(b2-d2>m2){
                         beststep2 = cur;
-                        a2 = m1;
-                        b2 = m2; 
+                        a2 = m1-c2;
+                        b2 = m2-d2; 
                     }
                 }
                 }
