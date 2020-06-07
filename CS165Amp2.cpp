@@ -72,14 +72,14 @@ long int score(position p, int calcopp,int size){
         int left[5], right[5];
         p1 = newposition(p, d, -1);                                 //向左向下检查
         lef = p;
-        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
+        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == oppchess){
             lef = p1;
             p1 = newposition(p1, d, -1);
             l ++;
         }
         p1 = newposition(p, d, 1);                                  //向右向下检查
         rig = p;
-        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
+        while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == oppchess){
             rig = p1;
             p1 = newposition(p1, d, 1);
             l ++;
@@ -115,7 +115,7 @@ long int score(position p, int calcopp,int size){
             }
         }
         else if(l == 3){
-            if((left[1] == 0 && left[2] == calcopp) || (right[1] == 0 && right[2] == calcopp)){//双死4
+            if((left[1] == 0 && left[2] == oppchess) || (right[1] == 0 && right[2] == oppchess)){//双死4
             doublesi4 ++;
        }
         else if(left[1] == 0 && right[1] == 0 && (left[2] == 0 || right[2] == 0)){//huo3
@@ -132,24 +132,24 @@ long int score(position p, int calcopp,int size){
            }
        }
        else if(l == 2){
-              if((left[1] == 0 && left[2] == calcopp && left[3] == calcopp) && 
-                 (right[1] == 0 && right[2] == calcopp && right[3] == calcopp)){//si4
+              if((left[1] == 0 && left[2] == oppchess && left[3] == oppchess) && 
+                 (right[1] == 0 && right[2] == oppchess && right[3] == oppchess)){//si4
                    doublesi4 ++;
            }
            else if(left[1] == 0 && right[1] == 0 && 
-                   ((left[2] == calcopp && left[3] == 0) || (right[2] == calcopp && right[3] == 0))){//doublehuo3
+                   ((left[2] == oppchess && left[3] == 0) || (right[2] == oppchess && right[3] == 0))){//doublehuo3
                    doublehuo3 ++;
            }
-           else if((left[1] == 0 && left[3] == 0 && left[2] == calcopp) || 
-                   (right[1] == 0 && right[3] == 0 && right[2] == calcopp)){//si3
+           else if((left[1] == 0 && left[3] == 0 && left[2] == oppchess) || 
+                   (right[1] == 0 && right[3] == 0 && right[2] == oppchess)){//si3
                 si3 ++;
            }
            else if((left[1] == 0 && right[1] == 0) && 
-                   (left[2] == calcopp || right[2] == calcopp)){//si3
+                   (left[2] == oppchess || right[2] == oppchess)){//si3
                    si3 ++;
            }
-           else if((left[1] == 0 && left[2] == 0 && left[3] == calcopp) || 
-                   (right[1] == 0 && right[2] == 0 && right[3] == calcopp)){//si3
+           else if((left[1] == 0 && left[2] == 0 && left[3] == oppchess) || 
+                   (right[1] == 0 && right[2] == 0 && right[3] == oppchess)){//si3
                 si3 ++;
            }
            else if((left[1] == 0 && right[1] == 0 && right[2] == 0 && right[3] == 0) || 
@@ -166,59 +166,59 @@ long int score(position p, int calcopp,int size){
            }
        }
        else if(l == 1){
-              if((left[1] == 0 && left[2] == calcopp && left[3] == calcopp && left[4] == calcopp) || 
-                 (right[1] == 0 && right[2] == calcopp && right[3] == calcopp && right[4] == calcopp)){//doublesi4
+              if((left[1] == 0 && left[2] == oppchess && left[3] == oppchess && left[4] == oppchess) || 
+                 (right[1] == 0 && right[2] == oppchess && right[3] == oppchess && right[4] == oppchess)){//doublesi4
                    doublesi4 ++;
            }
-           else if((left[1] == 0 && right[1] == 0) && ((left[2] == calcopp && left[3] == calcopp && left[4] == 0) || 
-                   (right[2] == calcopp && right[3] == calcopp && right[4] == 0))){//doublehuo3
+           else if((left[1] == 0 && right[1] == 0) && ((left[2] == oppchess && left[3] == oppchess && left[4] == 0) || 
+                   (right[2] == oppchess && right[3] == oppchess && right[4] == 0))){//doublehuo3
                    doublehuo3 ++;
            }
            else if((left[1] == 0 && right[1] == 0) && 
-                   ((left[2] == calcopp && left[3] == calcopp) || (right[2] == calcopp && right[3] == calcopp))){//si3
+                   ((left[2] == oppchess && left[3] == oppchess) || (right[2] == oppchess && right[3] == oppchess))){//si3
                    si3 ++;
            }
-           else if((left[1] == 0 && left[4] == 0 && left[2] == calcopp && left[3] == calcopp) || 
-                   (right[1] == 0 && right[4] == 0 && right[2] == calcopp && right[3] == calcopp)){//si3
+           else if((left[1] == 0 && left[4] == 0 && left[2] == oppchess && left[3] == oppchess) || 
+                   (right[1] == 0 && right[4] == 0 && right[2] == oppchess && right[3] == oppchess)){//si3
                    si3 ++;
            }
-           else if((left[1] == 0 && left[2] == 0 && left[3] == calcopp && left[4] == calcopp) || 
-                   (right[1] == 0 && right[2] == 0 && right[3] == calcopp && right[4] == calcopp)){//si3
+           else if((left[1] == 0 && left[2] == 0 && left[3] == oppchess && left[4] == oppchess) || 
+                   (right[1] == 0 && right[2] == 0 && right[3] == oppchess && right[4] == oppchess)){//si3
                    si3 ++;
            } 
-           else if((left[1] == 0 && left[3] == 0 && left[2] == calcopp && left[4] == calcopp) || 
-                   (right[1] == 0 && right[3] == 0 && right[2] == calcopp && right[4] == calcopp)){//si3
+           else if((left[1] == 0 && left[3] == 0 && left[2] == oppchess && left[4] == oppchess) || 
+                   (right[1] == 0 && right[3] == 0 && right[2] == oppchess && right[4] == oppchess)){//si3
                    si3 ++;
            }
-           else if((left[1] == 0 && right[1] == 0 && right[3] == 0 && right[2] == calcopp) && (left[2] == 0 || right[4] == 0)){//doublehuo2
+           else if((left[1] == 0 && right[1] == 0 && right[3] == 0 && right[2] == oppchess) && (left[2] == 0 || right[4] == 0)){//doublehuo2
                    doublehuo2 ++;
            }
-           else if((right[1] == 0 && left[1] == 0 && left[3] == 0 && left[2] == calcopp) && 
+           else if((right[1] == 0 && left[1] == 0 && left[3] == 0 && left[2] == oppchess) && 
                    (right[2] == 0 || left[4] == 0)){//doublehuo2
                    doublehuo2 ++;
            }
-           else if((left[1] == 0 && right[1] == 0 && right[2] == 0 && right[4] == 0 && right[3] == calcopp) || 
-                   (right[1] == 0 && left[1] == 0 && left[2] == 0 && left[4] == 0 && left[3] == calcopp)){//doublehuo2
+           else if((left[1] == 0 && right[1] == 0 && right[2] == 0 && right[4] == 0 && right[3] == oppchess) || 
+                   (right[1] == 0 && left[1] == 0 && left[2] == 0 && left[4] == 0 && left[3] == oppchess)){//doublehuo2
                    doublehuo2 ++;
            }
-           else if((left[1] == 0 && left[3] == 0 && left[4] == 0 && left[2] == calcopp) || 
-                   (right[1] == 0 && right[3] == 0 && right[4] == 0 && right[2] == calcopp)){//si2
+           else if((left[1] == 0 && left[3] == 0 && left[4] == 0 && left[2] == oppchess) || 
+                   (right[1] == 0 && right[3] == 0 && right[4] == 0 && right[2] == oppchess)){//si2
                    si2 ++;
            }
-           else if((left[1] == 0 && right[1] == 0 && right[2] == 0 && left[2] == calcopp) || 
-                   (right[1] == 0 && left[1] == 0 && left[2] == 0 && right[2] == calcopp)){//si2
+           else if((left[1] == 0 && right[1] == 0 && right[2] == 0 && left[2] == oppchess) || 
+                   (right[1] == 0 && left[1] == 0 && left[2] == 0 && right[2] == oppchess)){//si2
                    si2 ++;
            }
-           else if((left[1] == 0 && left[2] == 0 && left[4] == 0 && left[3] == calcopp) || 
-                   (right[1] == 0 && right[2] == 0 && right[4] == 0 && right[3] == calcopp)){//si2
+           else if((left[1] == 0 && left[2] == 0 && left[4] == 0 && left[3] == oppchess) || 
+                   (right[1] == 0 && right[2] == 0 && right[4] == 0 && right[3] == oppchess)){//si2
                    si2 ++;
            }
-           else if((left[1] == 0 && left[2] == 0 && right[1] == 0 && left[3] == calcopp) || 
-                   (right[1] == 0 && right[2] == 0 && left[1] == 0 && right[3] == calcopp)){//si2
+           else if((left[1] == 0 && left[2] == 0 && right[1] == 0 && left[3] == oppchess) || 
+                   (right[1] == 0 && right[2] == 0 && left[1] == 0 && right[3] == oppchess)){//si2
                    si2 ++;
            }
-           else if((left[1] == 0 && left[2] == 0 && left[3] == 0 && left[4] == calcopp) || 
-                   (right[1] == 0 && right[2] == 0 && right[3] == 0 && right[4] == calcopp)){//si2
+           else if((left[1] == 0 && left[2] == 0 && left[3] == 0 && left[4] == oppchess) || 
+                   (right[1] == 0 && right[2] == 0 && right[3] == 0 && right[4] == oppchess)){//si2
                    si2 ++;
            }
            else{//mode
