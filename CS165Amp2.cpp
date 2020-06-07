@@ -355,7 +355,7 @@ int main(int argc, char* argv[]){
         else{
             cout<<"Move Played: "<<char(beststep2.x+97)<<beststep2.y;
         }
-    }
+    
 
     return 0;
 }
