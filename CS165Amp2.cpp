@@ -56,13 +56,7 @@ position newposition (position p, direction d, int lenth){
 long int score(position p, int calcopp,int size){
     int win5 = 0, huo4 = 0, si4 = 0, doublesi4 = 0, huo3 = 0, 
     doublehuo3 = 0, si3 = 0, huo2 = 0, doublehuo2 = 0, si2 = 0, mode = 0;
-    int oppchess;
-    if(calcopp == 1){
-        oppchess = 2;
-    }
-    else{
-        oppchess = 1;
-    }
+    int oppchess = 2;
     for(int i = 1; i <= 4; i ++){
         direction directions [4]= {dlr,dud,ddl,ddr};
         direction d = directions[i+1];
