@@ -226,32 +226,32 @@ long int score(position p, int calcopp,int size){
        }
     }
     if (win5 >= 1)
-        return 99999999999999;//贏5
+        return 100000;//贏5
     if (huo4 >= 1 || si4 >= 2 || (si4 >= 1 && huo3 >= 1))
-        return 9999999999999;//活4 双死4 死4活3
+        return 50000;//活4 双死4 死4活3
     if (huo3 >= 2)
-        return 999999999999;//双活3
+        return 50000;//双活3
     if (si3 >= 1 && huo3 >= 1)
-        return 99999999999;//死3活3
+        return 30000;//死3活3
     if (si4 >= 1)
-        return 9999999999;//死4
+        return 20000;//死4
     if (doublesi4 >= 1)
-        return 999999999;//死4
+        return 10000;//死4
     if (huo3 >= 1)
-        return 99999999;//活3
+        return 5000;//活3
     if (doublehuo3 >= 1)
-        return 9999999;//双活3
+        return 2500;//双活3
     if (huo2 >= 2)
-        return 999999;//高等双活2
+        return 1250;//高等双活2
     if (huo2 >= 1)
-        return 99999;//单活2
+        return 1000;//单活2
     if (doublehuo2 >= 1)
-        return 9999;//双活2
+        return 750;//双活2
     if (si3 >= 1)
-        return 999;//死3S
+        return 500;//死3S
     if (si2 >= 1)
-        return 99;//死2
-    return 9;//无事发生
+        return 250;//死2
+    return 1;//无事发生
 }
 
 int main(int argc, char* argv[]){
@@ -271,7 +271,7 @@ int main(int argc, char* argv[]){
         char ch = static_cast<char>(size/2+97);
         cout<<"Move Played: "<<ch<<size/2+1<<endl;
         chessboard[size/2][size/2]=1;
-        }
+    }
     while(true){
         string temp ="";
         cin>>temp;
@@ -307,16 +307,10 @@ int main(int argc, char* argv[]){
                 position cur = {i, j};
                 long int m1 = score(cur, myAI,size);
                 long int m2 = score(cur, opponent,size);
-                if(m1 > a1){
+                if(m1+m2 > a1+b1){
                     beststep1 = cur;
                     a1 = m1;
                     b1 = m2;}
-                else if(m1 == a1){
-                    if(m2 > b1){ 
-                        beststep1 = cur;
-                        b1 = m2;
-                    }
-                }
                 }
             }
         }
@@ -329,19 +323,14 @@ int main(int argc, char* argv[]){
                 position cur = {i, j};
                 long int m1 = score(cur, opponent,size);
                 long int m2 = score(cur, myAI,size);
-                if(m1 > a2){
+                if(m1+m2 > a2+b2){
                     beststep2 = cur;
                     a2 = m1;
                     b2 = m2;}
-                else if(m1 == a2){
-                    if(m2 > b2){
-                        beststep2 = cur;
-                        b2 = m2;
-                    }
                 }
             }
-            }
         }
+    
         if(a1 > a2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
