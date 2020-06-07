@@ -237,11 +237,11 @@ long int score(position p, int calcopp,int size){
     if (si4 >= 1)
         return 160000;//死4
     if (doublesi4 >= 1)
-        return 150000;//死4
+        return 160000;//死4
     if (huo3 >= 1)
         return 130000;//活3
     if (doublehuo3 >= 1)
-        return 112000;//双活3
+        return 145000;//双活3
     if (huo2 >= 2)
         return 300;//高等双活2
     if (huo2 >= 1)
