@@ -29,16 +29,10 @@ const direction ddr = {1, 1};  //右下↘
 vector<vector<int>> chessboard;
 
 position messtoposi(string message){
-    stringstream str_strm;
-    str_strm << message; 
-    string temp_str;
-    int temp_int;
-    while(!str_strm.eof()) {
-        str_strm >> temp_str; //take words into temp_str one by one
-        stringstream(temp_str) >> temp_int;}
+
     position p1;
-    p1.y =((int)message[0])-97;
-    p1.x =temp_int;
+    p1.y =message[0]-'a';
+    p1.x =stoi(s.substr(1))-1;
     return p1;
 }
 
@@ -281,7 +275,7 @@ int main(int argc, char* argv[]){
         cin>>temp;
         cout<<"wdnmd"<<endl;
         position p1 = messtoposi(temp);
-        cout<<"The y"<<p1.y<<"  The X"<<p1.x<<endl;
+        cout<<"The y:"<<p1.y<<"  The X:"<<p1.x<<endl;
         while (chessboard[p1.y][p1.x]!=0)
         {
             cout<<"Invalid move"<<endl;
