@@ -7,7 +7,7 @@
 #include <string>
 using namespace std;
 
-bool xianshou = 1;
+bool xianshou = 0;
 int size = 0;
 int myAI = 1;
 int opponent =2;
@@ -27,6 +27,18 @@ const direction ddr = {1, 1};  //右下↘
 
 vector<vector<int>> chessboard;
 
+position messtoposi(string message){
+    stringstream str_strm;
+    str_strm << message; 
+    string temp_str;
+    int temp_int;
+    while(!str_strm.eof()) {
+        str_strm >> temp_str; //take words into temp_str one by one
+        stringstream(temp_str) >> temp_int}
+    position p1;
+    p1.y =temp_int;
+    p1.x =int(message[13]-97);
+}
 
 bool isOnBoard(position p){
     if(p.y >= 0 && p.y < 15 && p.x >= 0 && p.x < 15){
@@ -246,19 +258,20 @@ int score(position p, int calcopp){
 
 int main(int argc, char* argv[]){
     string temp ="";
-    vector<string> v;
-    while(cin>>temp){
-        cout<<"Move Played: "<<temp<<endl;
-        v.push_back(temp);
+    cin>>temp;
+    
+    if(argc>1 && argv[1][1]--"n"){
+        size = stoi(argv[2]);
     }
-    for(int i=0;i<v.size();i++){
-        if(v[i]=="-l")
-            xianshou = 0;
-        if(v[i]=="-n")
-            for(int i =0; i<v.size();i++){
-                size = stoi(v[i]);
-            }
-}
+    else if(argc > 2&& argv[2][1]=='n'){
+        size = stoi(argv[3]);
+    }
+    if(argc>1&&argv[1][1]=='l'){
+        xianshou = 1;
+    }
+    else if(argc>1&argv[3][1] == "l"){
+        xianshou=1;
+    }
 
     chessboard.resize(size);
     for( int i=0;i<size-1;i++){
@@ -272,9 +285,8 @@ int main(int argc, char* argv[]){
     }
 
 
-    while(true){
-        string temp;
-        cin>>temp;
+    while(cin>>temp){
+        cout<<"Move Played: "<<temp<<endl;
         chessboard[int(temp[1])-97][temp[2]-1] = 2;
 
         position beststep1, beststep2;  //1prio on attack 2prio on defence
