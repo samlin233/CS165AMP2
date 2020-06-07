@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 bool xianshou = 0;
@@ -34,7 +35,7 @@ position messtoposi(string message){
     int temp_int;
     while(!str_strm.eof()) {
         str_strm >> temp_str; //take words into temp_str one by one
-        stringstream(temp_str) >> temp_int}
+        stringstream(temp_str) >> temp_int;}
     position p1;
     p1.y =temp_int;
     p1.x =int(message[13]-97);
@@ -260,16 +261,16 @@ int main(int argc, char* argv[]){
     string temp ="";
     cin>>temp;
     
-    if(argc>1 && argv[1][1]--"n"){
+    if(argc>1 && argv[1][1]=='n'){
         size = stoi(argv[2]);
     }
-    else if(argc > 2&& argv[2][1]=='n'){
+    else if(argc>2 && argv[2][1]=='n'){
         size = stoi(argv[3]);
     }
-    if(argc>1&&argv[1][1]=='l'){
+    if(argc>1 && argv[1][1]=='l'){
         xianshou = 1;
     }
-    else if(argc>1&argv[3][1] == "l"){
+    else if(argc>1 && argv[3][1] == 'l'){
         xianshou=1;
     }
 
