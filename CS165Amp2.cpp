@@ -226,32 +226,32 @@ long int score(position p, int calcopp,int size){
        }
     }
     if (win5 >= 1)
-        return 99999999999999;//贏5
+        return 100000;//贏5
     if (huo4 >= 1 || si4 >= 2 || (si4 >= 1 && huo3 >= 1))
-        return 9999999999999;//活4 双死4 死4活3
+        return 10000;//活4 双死4 死4活3
     if (huo3 >= 2)
-        return 999999999999;//双活3
+        return 5000;//双活3
     if (si3 >= 1 && huo3 >= 1)
-        return 99999999999;//死3活3
+        return 1000;//死3活3
     if (si4 >= 1)
-        return 9999999999;//死4
+        return 500;//死4
     if (doublesi4 >= 1)
-        return 999999999;//死4
+        return 100000;//死4
     if (huo3 >= 1)
-        return 99999999;//活3
+        return 200;//活3
     if (doublehuo3 >= 1)
-        return 9999999;//双活3
+        return 200;//双活3
     if (huo2 >= 2)
-        return 999999;//高等双活2
+        return 100;//高等双活2
     if (huo2 >= 1)
-        return 99999;//单活2
+        return 10;//单活2
     if (doublehuo2 >= 1)
-        return 9999;//双活2
+        return 10;//双活2
     if (si3 >= 1)
-        return 999;//死3S
+        return -5;//死3S
     if (si2 >= 1)
-        return 99;//死2
-    return 9;//无事发生
+        return -5;//死2
+    return 1;//无事发生
 }
 
 int main(int argc, char* argv[]){
