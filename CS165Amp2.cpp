@@ -273,7 +273,7 @@ int main(int argc, char* argv[]){
         chessboard[i].resize(size);}
     if(xianshou == 1){
         chessboard[size/2][size/2]=1;
-        string ch = "0"+(size/2+97);
+        string ch = '0'+(size/2+97);
         cout<<"Move Played: "<<ch<<size/2;}
     while(true){
         string temp ="";
