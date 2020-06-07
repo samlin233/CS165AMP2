@@ -294,7 +294,8 @@ int main(int argc, char* argv[]){
            for(int j=0; j<size;j++){
                if(chessboard[i][j]==0){
                    beststep1.y=i;
-                   beststep1.x=j;                   
+                   beststep1.x=j;  
+                   break;                 
                }
            }
        }
