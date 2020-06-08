@@ -405,7 +405,7 @@ int main(int argc, char* argv[]){
             }
         }
     
-        if(a1 > a2){
+        if(a1+b1> a2+b2){
             chessboard[beststep1.y][beststep1.x]=1;
             cout<<"Move Played: "<<char(beststep1.y+'a')<<beststep1.x+1<<endl;
         }
