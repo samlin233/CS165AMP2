@@ -23,14 +23,10 @@ struct direction{
     int dy;
     int dx;
 };
-const direction dy = {0, 1}; //向右→
-const direction dz = {0, -1}; //向左←
-const direction dx = {1, 0}; //向下↓
-const direction ds = {-1, 0}; //向上↑
-const direction dzx = {1, -1}; //左下↙
-const direction dzs = {-1, -1}; //左上↖
-const direction dyx = {1, 1};  //右下↘
-const direction dys = {-1, 1};  //右上↗
+const direction dlr = {0, 1}; //向右→
+const direction dud = {1, 0}; //向下↓
+const direction ddl = {1, -1}; //左下↙
+const direction ddr = {1, 1};  //右下↘
 // direction of left right(lr) up down(ud) down left(dl) down right(dr)  
 
 vector<vector<int>> chessboard;
@@ -68,8 +64,8 @@ long int score(position p, int calcopp,int size){
     else{
         oppchess = 1;
     }
-    for(int i = 1; i <= 8; i ++){
-        direction directions [8]= {dz,dy,dx,ds,dzs,dzx,dys,dyx};
+    for(int i = 1; i <= 4; i ++){
+        direction directions [4]= {dlr,dud,ddl,ddr};
         direction d = directions[i-1];
         int l = 1;               //连子长度
         position lef, rig, p1;
