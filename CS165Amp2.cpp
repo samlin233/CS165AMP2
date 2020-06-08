@@ -70,7 +70,7 @@ long int score(position p, int calcopp,int size){
         int l = 1;               //连子长度
         position lef, rig, p1;
         int left[5], right[5];
-        p1 = newposition(p, d, -1);                                 //向左向下检查
+        p1 = newposition(p, d, 1);                                 //向左向下检查
         lef = p;
         while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
             lef = p1;
