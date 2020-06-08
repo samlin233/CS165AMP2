@@ -70,7 +70,7 @@ long int score(position p, int calcopp,int size){
         int l = 1;               //连子长度
         position lef, rig, p1;
         int left[5], right[5];
-        p1 = newposition(p, d, -1);                                 //向左向下检查
+        p1 = newposition(p, d, -1);                                 //向左向上检查
         lef = p;
         while(isOnBoard(p1,size) && chessboard[p1.y][p1.x] == calcopp){
             lef = p1;
@@ -227,31 +227,31 @@ long int score(position p, int calcopp,int size){
        }
     }
     if (win5 >= 1)
-        return 15;//贏5
+        return 8192;//贏5
     if (huo4 >= 1 || si4 >= 2 || (si4 >= 1 && huo3 >= 1))
-        return 14;//活4 双死4 死4活3
+        return 4096;//活4 双死4 死4活3
     if (huo3 >= 2)
-        return 13;//双活3
+        return 2048;//双活3
     if (si3 >= 1 && huo3 >= 1)
-        return 12;//死3活3
+        return 1024;//死3活3
     if (si4 >= 1)
-        return 11;//死4
+        return 512;//死4
     if (doublesi4 >= 1)
-        return 10;//死4
+        return 256;//死4
     if (huo3 >= 1)
-        return 9;//活3
+        return 128;//活3
     if (doublehuo3 >= 1)
-        return 8;//双活3
+        return 64;//双活3
     if (huo2 >= 2)
-        return 7;//高等双活2
+        return 32;//高等双活2
     if (huo2 >= 1)
-        return 6;//单活2
+        return 16;//单活2
     if (doublehuo2 >= 1)
-        return 5;//双活2
+        return 8;//双活2
     if (si3 >= 1)
         return 4;//死3S
     if (si2 >= 1)
-        return 3;//死2
+        return 2;//死2
     return 1;//无事发生
 }
 
