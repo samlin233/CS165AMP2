@@ -3,6 +3,7 @@
 This is an AI Gomoku Game (Five in a Row) prject which allows manal fight against AI or AI VS AI competition. It will create a bord from 5x5 to size 26x26 to play Gomoku with choosed difficalty. Different level of difficalty takes different time for AI to calculate.
 
 Detail:
+
 Architecture:
 In my CS165AMP2.cpp file, the main class is to read the input of messages like “-l” and board size “-n<int>” to set up the board size and the color of chess my program is gonna use during the game. After that, the real game begins at the while loop, it keeps reading and reacting to the coming input by place the chess from the opponent and place its own chess by evaluating the value of each empty place on the chessboard. It does 2 layers of estimation, 1st is to find the one with a high enough score for us, second is to find the next step opponent most likely to do if we do step 1, then minus the score of step 1 with the score of step 2 to find out the highest value over these 2 layers of estimation then make the choice of which step 1 to make. The program also contains a class to find if the location is on board, transfer a message from string to two integers for 2d vector as position on board. And a class to act moving from one position to another, and finally, scoring class.
 The program setup setting according to the first line of input to decide if the ai hold black or white chess and the size of the chessboard. Then go to the while loop of keep reading movement made by the opponent, print out, change the value of the 2d vector chessboard.
